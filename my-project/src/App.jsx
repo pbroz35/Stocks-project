@@ -1,12 +1,16 @@
-import React from 'react';
-import Dashboard from './components/Dashboard.jsx';
-
+import React, { useState } from "react";
+import Dashboard from "./components/Dashboard.jsx";
+import { createContext } from "react";
+import TickerContent from "./context/ticker.jsx";
 
 function App() {
+  const TickerContext = createContext();
+  const [ticker, setTicker] = useState(["APL"]);
+
   return (
-    <div className="p-2 bg-gray-800 text-gray-300 font-quicksand">
+    <TickerContent.Provider value={{ ticker, setTicker }}>
       <Dashboard />
-    </div>
+    </TickerContent.Provider>
   );
 }
 

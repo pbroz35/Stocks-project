@@ -8,34 +8,32 @@ import AI from "./AI";
 import { useState } from "react";
 
 const Dashboard = () => {
-  
-  const [stockName, setStockName] = useState("Apple Inc")
-  
+  const [stockName, setStockName] = useState("Apple Inc");
+
   return (
-    <div className={`h-screen grid grid-cols-9 grid-rows-9  gap-3  `}>
+    <div className="p-2 bg-gray-800 text-gray-300 font-quicksand">
+      <div className={`h-screen grid grid-cols-9 grid-rows-9  gap-3  `}>
+        <div className="row-span-1 col-span-9 flex ">
+          <Header stockName={stockName}></Header>
+        </div>
 
-      <div className="row-span-1 col-span-9 flex ">
-         <Header stockName={stockName}></Header> 
+        <div className="row-span-8 col-span-2">
+          <Sidebar></Sidebar>
+        </div>
+
+        <div className="row-span-6 col-span-5">
+          <Graph></Graph>
+        </div>
+
+        <div className="row-span-6 col-span-2">
+          <AI></AI>
+        </div>
+
+        <div className="row-span-2 col-span-7">
+          <News></News>
+        </div>
       </div>
-
-      <div className="row-span-8 col-span-2">
-        <Sidebar></Sidebar>
-      </div>
-
-      <div className="row-span-6 col-span-5">
-        <Graph></Graph>
-      </div>
-
-      <div className="row-span-6 col-span-2">
-        <AI></AI>
-      </div>
-
-      <div className="row-span-2 col-span-7">
-      <News></News>
-      </div>
-
-
-
+      
     </div>
   );
 };

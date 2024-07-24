@@ -1,11 +1,25 @@
-import React from 'react'
+import React from "react";
+import { useContext } from "react";
+import TickerContent from "../context/ticker";
+import TickerCard from "./TickerCard";
+
 
 const StockContainer = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  
+  const {ticker} = useContext(TickerContent);  
 
-export default StockContainer
+  return (
+    <ul>
+      {ticker.map((tickerElement, index) => (
+        
+        10 > index ? <TickerCard>
+        <li key={index}>{tickerElement}</li>
+        </TickerCard>: null
+
+
+      ))}
+    </ul>
+  );
+};
+
+export default StockContainer;

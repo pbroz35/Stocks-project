@@ -1,7 +1,8 @@
 import React from 'react'
 import Card from './Card'
 import Search from './Search'
-
+import StockContainer from './StockContainer'
+import { useContext } from 'react'
 
 const Scrollbar = () => {
     return (
@@ -9,7 +10,7 @@ const Scrollbar = () => {
 
         <Search></Search>
 
-        
+        <StockContainer></StockContainer>
 
 
         </Card>
