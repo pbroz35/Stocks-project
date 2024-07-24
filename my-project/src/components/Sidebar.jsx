@@ -1,11 +1,15 @@
 import React from 'react'
 import Card from './Card'
+import Search from './Search'
+
 
 const Scrollbar = () => {
     return (
         <Card>
 
-        <div>Scrollbar</div>
+        <Search></Search>
+
+        
 
 
         </Card>
