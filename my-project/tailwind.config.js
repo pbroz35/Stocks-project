@@ -15,6 +15,7 @@ export default {
       },
       fontFamily:{
         quicksand: ["Quicksand", "sans-serif"],
+        roboto:["Roboto", "sans-serif"]
       },
       gridTemplateRows:{
         7: "repeat(7, minmax(0, 1fr))",

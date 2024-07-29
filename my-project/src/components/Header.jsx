@@ -8,7 +8,7 @@ const Header = ({ stockName }) => {
 
       <div className="flex justify-between items-center h-6">
 
-        <h1 className="pt-0 pl- mt-6 text-5xl">{stockName}</h1>
+        <h1 className="pt-0 pl- mt-6 text-5xl font-quicksand">{stockName}</h1>
 
         <ThemeIcon className="ml-80"></ThemeIcon>
 

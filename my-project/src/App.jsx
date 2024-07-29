@@ -5,7 +5,7 @@ import TickerContent from "./context/ticker.jsx";
 
 function App() {
   const TickerContext = createContext();
-  const [ticker, setTicker] = useState(["APL"]);
+  const [ticker, setTicker] = useState([]);
 
   return (
     <TickerContent.Provider value={{ ticker, setTicker }}>

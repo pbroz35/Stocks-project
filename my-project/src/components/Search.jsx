@@ -5,11 +5,30 @@ import { SearchIcon } from "@heroicons/react/solid";
 import { useContext } from "react";
 import TickerContent from "../context/ticker";
 
-
 const Search = () => {
   const [input, setInput] = useState("");
 
   const { ticker, setTicker } = useContext(TickerContent);
+
+  const fetchTicker = () => {
+    console.log("Fetching tickers...");
+
+    const apiServer = `http://localhost:3500`;
+    const query = input; // assuming `input` holds the symbol value
+
+    fetch(`${apiServer}/ticker?symbol=${query}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("value", data);
+        console.log("query was", query);
+        const newTicker = { symbol: query, info: data };
+        setTicker([...ticker, newTicker]);
+        console.log(ticker)
+      })
+      .catch((error) => {
+        console.error("Error fetching ticker:", error);
+      });
+  };
 
   const clear = () => {
     setInput("");
@@ -18,7 +37,8 @@ const Search = () => {
   const addTicker = () => {
     //Add a verification process to check if the ticker exists?
     console.log("Adding ticker..");
-    setTicker([...ticker, input]);
+
+    fetchTicker();
   };
 
   return (
