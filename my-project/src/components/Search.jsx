@@ -56,6 +56,7 @@ const Search = () => {
         onKeyDown={(e) => {
           if (e.key == "Enter") {
             addTicker();
+            clear();
           }
         }}
       />
