@@ -29,7 +29,7 @@ const Search = () => {
         console.error("Error fetching ticker:", error);
       });
   };
-
+ 
   const clear = () => {
     setInput("");
   };

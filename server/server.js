@@ -15,10 +15,13 @@ const myEnvVar = process.env.FINNHUB_API;
 
 app.use("/ticker", require("./routes/tickerInfo.js"));
 
+app.use("/get-Info", require("./routes/getCompanyInfo.js"));
+
+app.use("/getHistoricalData", require("./routes/getHistoricalData.js"));
+
 app.use("/", (req, res) => {
   res.send("main page");
 });
-
 
 app.listen(PORT, () =>
   console.log(

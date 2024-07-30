@@ -10,12 +10,12 @@ router.get("/", async (req, res)=>{
     
     res.header('Access-Control-Allow-Origin', '*');
     
-    const FinnhubAPI = process.env.FINNHUB_API
+    const AlphaAPI = process.env.ALPHA_API;
     const {symbol} = req.query;
 
     try {
         // URL of the external API to fetch popular movies
-        const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FinnhubAPI}`;
+        const url = `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${symbol}&apikey=${AlphaAPI}`;
 
         // Making the fetch request to the external API
         const response = await fetch(url);
@@ -28,8 +28,6 @@ router.get("/", async (req, res)=>{
         // Checking if the response is successful
         if(response.ok){
             // Sending the fetched data as the response in JSON format
-
-           // console.log((data));
             res.json(data);
         }
         else {
@@ -44,10 +42,7 @@ router.get("/", async (req, res)=>{
         // Sending a 500 Internal Server Error response in case of any exceptions
         res.status(500).json({ error: 'Internal server error' });
     }
-
-
 })
-
 
 //export the router
 module.exports = router;

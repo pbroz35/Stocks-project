@@ -15,7 +15,7 @@ router.get("/", async (req, res)=>{
 
     try {
         // URL of the external API to fetch popular movies
-        const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FinnhubAPI}`;
+        const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${FinnhubAPI}`;
 
         // Making the fetch request to the external API
         const response = await fetch(url);
@@ -28,8 +28,6 @@ router.get("/", async (req, res)=>{
         // Checking if the response is successful
         if(response.ok){
             // Sending the fetched data as the response in JSON format
-
-           // console.log((data));
             res.json(data);
         }
         else {
