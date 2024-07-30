@@ -9,7 +9,6 @@ require('dotenv').config();
 router.get("/", async (req, res)=>{
     
     res.header('Access-Control-Allow-Origin', '*');
-
    // const FinnhubAPI = process.env.FINNHUB_API
 
     const {symbol} = req.query;
@@ -17,8 +16,6 @@ router.get("/", async (req, res)=>{
     try {
         // URL of the external API to fetch popular movies
         const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=cqf9qapr01qle0e35srgcqf9qapr01qle0e35ss0`;
-
-      
 
         // Making the fetch request to the external API
         const response = await fetch(url);
