@@ -13,6 +13,8 @@ app.use(cors());
 
 const myEnvVar = process.env.FINNHUB_API;
 
+app.use("/getNews", require("./routes/getNews.js"));
+
 app.use("/ticker", require("./routes/tickerInfo.js"));
 
 app.use("/get-Info", require("./routes/getCompanyInfo.js"));
@@ -25,6 +27,6 @@ app.use("/", (req, res) => {
 
 app.listen(PORT, () =>
   console.log(
-    `Server is running on PORT ${PORT} and finnhub API KEY IS ${myEnvVar}`
+    `Server is running on PORT ${PORT}`
   )
 );

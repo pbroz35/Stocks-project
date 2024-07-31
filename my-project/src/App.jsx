@@ -26,7 +26,7 @@ function App() {
       .then((data) => {
         
         setCurrTickerInfo(data);
-        
+
         console.log("Info is " , data);
       })
       .catch((error) => {
@@ -40,7 +40,7 @@ function App() {
   return (
     <TickerContent.Provider value={{ ticker, setTicker }}>
       <TickerInfo.Provider value={{currTickerInfo, setCurrTickerInfo}}>
-        <Dashboard />
+        <Dashboard/>
       </TickerInfo.Provider>
     </TickerContent.Provider>
   );
