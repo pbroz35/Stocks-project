@@ -15,11 +15,12 @@ const Header = ({ stockName }) => {
 
   return (
     <Card
-      className="bg-gray-800 text-gray-300 border-gray-800"
+      className="bg-gray-800 text-gray-300 border-gray-800 "
       onClick={() => sayInfo()}
     >
       <div className="flex justify-between items-center h-6">
-        <h1 className="pt-0 pl- mt-6 text-5xl font-quicksand">
+        <h1 className="pt-0 pl- mt-6 text-5xl font-quicksand font-semibold"
+        style={{marginTop: "5px"}}>
           {currTickerInfo.name ? currTickerInfo.name : "Ticker"}
         </h1>
 

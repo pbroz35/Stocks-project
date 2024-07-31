@@ -31,8 +31,10 @@ const News = () => {
             setNews(filteredArticles);
             console.log("filtered news is ", filteredArticles);
           } else {
-            console.log("No articles found for the query, getting broader news..");
-            setNews(data);
+            console.log(
+              "No articles found for the query, getting broader news.."
+            );
+            setNews(data.articles);
             console.log("Broader news is ", data.articles);
           }
         } catch (error) {
@@ -44,11 +46,34 @@ const News = () => {
     fetchNews();
   }, [ticker]);
 
-
   return (
     <Card>
-      <div>News</div>
-    </Card>
+    {news && (
+      <div className="flex space-x-5 p-1">
+        {news.slice(0, 4).map((article, index) => (
+          <a
+            key={index}
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 p-3 rounded-3xl opacity-90 hover:opacity-60 shadow-2xl"
+            style={{
+              backgroundImage: `url(${article.urlToImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              marginTop: "-20px",
+              textDecoration: "none", // Remove underline from links
+              color: "inherit" // Inherit text color
+            }}
+          >
+            <h2 className="text-l font-bold mb-2 bg-gray-700 rounded-md p-1 opacity-86">
+              {article.title}            </h2>
+          </a>
+        ))}
+      </div>
+    )}
+  </Card>
+  
   );
 };
 
