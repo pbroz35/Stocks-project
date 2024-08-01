@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   const { inquiry } = req.query;
 
   try {
-    const url = `https://newsapi.org/v2/everything?q=${inquiry}&from=2024-06-30&sortBy=popularity&apiKey=${NEWSAPI}`;
+    const url = `https://newsapi.org/v2/everything?q=${inquiry}&from=2024-06-31&sortBy=popularity&apiKey=${NEWSAPI}`;
     const response = await fetch(url);
     const data = await response.json();
 

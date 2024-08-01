@@ -18,56 +18,91 @@ app.use(cors());
 const myEnvVar = process.env.FINNHUB_API;
 
 app.use("/getNews", require("./routes/getNews.js"));
+
 app.use("/ticker", require("./routes/tickerInfo.js"));
+
 app.use("/get-Info", require("./routes/getCompanyInfo.js"));
+
 app.use("/getHistoricalData", require("./routes/getHistoricalData.js"));
 
-app.use('/fetch-articles', async (req, res) => {
-  const { topic = "apple", num_articles = 10 } = req.query;
+
+app.use("/fetch-articles", async (req, res) => {
+
+  const { topic = "Apple" } = req.query;
+
   //const newsAPI = process.env.NEWS_API;
 
-  const feed = `https://newsapi.org/v2/everything?q=Apple&from=2024-06-31&sortBy=popularity&apiKey=27e0aa453b484611a1266f3ed1dc53b6`;
+  const feed = `https://newsapi.org/v2/everything?q=${topic}&from=2024-06-31&sortBy=popularity&apiKey=27e0aa453b484611a1266f3ed1dc53b6`;
+
+  console.log(`The topic is ${topic} and the url is ${feed} \n`);
 
   try {
     const response = await axios.get(feed);
 
+    var articleIndex = 0;
+
     const results = response.data;
+
     if (results.status === "ok") {
-      
-       const dirPath = path.join(__dirname, "articles");
-       await fs.mkdir(dirPath, { recursive: true });
+      const dirPath = path.join(__dirname, "articles");
 
-       for (let i = 0; i < results.articles.length; i++) {
-         const article = results.articles[i];
+      await fs.mkdir(dirPath, { recursive: true });
 
-         if (article.url !== "https://removed.com" && !article.url.startsWith("https://consent.yahoo.com")) {
-          
+      //delete all files in the folder first.
+      try {
+        const files = await fs.readdir(dirPath);
+        const deletePromises = files.map((file) =>
+          fs.unlink(path.join(dirPath, file))
+        );
+        await Promise.all(deletePromises);
+        console.log("All files deleted successfully.");
+      } catch (error) {
+        console.error("Error while deleting files:", error);
+      }
+
+      for (let i = 0; i < results.articles.length; i++) {
+        const article = results.articles[i];
+
+        if (
+          article.url.startsWith("https://www.wired.com") ||
+          article.url.startsWith("https://www.cdn.vox-cdn.com") ||
+          article.url.startsWith("https://www.gizmodo.com") ||
+          article.url.startsWith("https://www.theverge.com")
+        ) {
+          articleIndex = i;
+
           // Your code here
-           const article_text = await axios.get(article.url).then(res => res.data);
-           const filePath = path.join(dirPath, `article${i}.html`);
-           await fs.writeFile(filePath, article_text);
+          const article_text = await axios
+            .get(article.url)
+            .then((res) => res.data);
+          const filePath = path.join(dirPath, `article${i}.html`);
+          await fs.writeFile(filePath, article_text);
         }
-       }
+      }
 
       res.status(200).send("Articles fetched and saved successfully.");
 
       console.log("filtering data...");
+      
       filterData();
+
+      //call the AI model
+      
+
+
 
     } else {
       res.status(500).send("Error fetching articles.");
     }
   } catch (error) {
-    res.status(500).send(`Error: ${error.message}`);
+    res.status(500).send(`Error: ${error.message} } `);
   }
 });
 
-app.use("/get-AI-response", require('./routes/AI.js'));
+app.use("/get-AI-response", require("./routes/AI.js"));
 
 app.use("/", (req, res) => {
   res.send("main page");
 });
 
-app.listen(PORT, () =>
-  console.log(`Server is running on PORT ${PORT}`)
-);
+app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
