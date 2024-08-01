@@ -28,7 +28,7 @@ const filterData = () => {
 
     fs.writeFileSync(promptsFilePath, ""); // Clear the prompts file before writing
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {
         const filePath = path.join("articles", `article${i}.html`);
         try {
             if (fs.existsSync(filePath)) {
@@ -52,7 +52,9 @@ const filterData = () => {
         .join('\n');
     fs.writeFileSync(promptsFilePath, filteredContent);
 
-    console.log("Data filtering complete.");
+    console.log("Data filtering complete, sending info to the AI API...");
+
+    
 };
 
 module.exports = { filterData };

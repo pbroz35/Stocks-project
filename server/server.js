@@ -62,6 +62,8 @@ app.use('/fetch-articles', async (req, res) => {
   }
 });
 
+app.use("/get-AI-response", require('./routes/AI.js'));
+
 app.use("/", (req, res) => {
   res.send("main page");
 });
