@@ -4,9 +4,10 @@ const axios = require("axios");
 const { promises: fs } = require("fs");
 const path = require("path");
 const cors = require("cors");
-
 const app = express();
 const PORT = 3500;
+
+const { filterData } = require("./filter.js"); // Use CommonJS require
 
 // For JSON
 app.use(express.json());
@@ -38,6 +39,7 @@ app.use('/fetch-articles', async (req, res) => {
 
        for (let i = 0; i < results.articles.length; i++) {
          const article = results.articles[i];
+
          if (article.url !== "https://removed.com" && !article.url.startsWith("https://consent.yahoo.com")) {
           
           // Your code here
@@ -48,6 +50,10 @@ app.use('/fetch-articles', async (req, res) => {
        }
 
       res.status(200).send("Articles fetched and saved successfully.");
+
+      console.log("filtering data...");
+      filterData();
+
     } else {
       res.status(500).send("Error fetching articles.");
     }

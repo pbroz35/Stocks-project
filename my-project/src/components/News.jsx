@@ -56,7 +56,7 @@ const News = () => {
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 p-3 rounded-3xl opacity-90 hover:opacity-60 shadow-2xl"
+            className="flex-1 p-8 rounded-3xl opacity-90 hover:opacity-60 shadow-2xl"
             style={{
               backgroundImage: `url(${article.urlToImage})`,
               backgroundSize: "cover",
@@ -66,7 +66,7 @@ const News = () => {
               color: "inherit" // Inherit text color
             }}
           >
-            <h2 className="text-l font-bold mb-2 bg-gray-700 rounded-md p-1 opacity-86">
+            <h2 className="text-l font-bold mb-2 bg-gray-700 rounded-md p-1 opacity-80 mr-5">
               {article.title}            </h2>
           </a>
         ))}
