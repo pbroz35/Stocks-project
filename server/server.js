@@ -28,7 +28,7 @@ app.use("/getHistoricalData", require("./routes/getHistoricalData.js"));
 app.use("/get-AI-response", require("./routes/AI.js"));
 
 app.use("/fetch-articles", async (req, res) => {
-  const { topic = "Apple" } = req.query;
+  const { topic  } = req.query;
 
   //const newsAPI = process.env.NEWS_API;
 
@@ -67,7 +67,8 @@ app.use("/fetch-articles", async (req, res) => {
           article.url.startsWith("https://www.wired.com") ||
           article.url.startsWith("https://www.cdn.vox-cdn.com") ||
           article.url.startsWith("https://www.gizmodo.com") ||
-          article.url.startsWith("https://www.theverge.com")
+          article.url.startsWith("https://www.theverge.com") ||
+          article.url.startsWith("https://www.benzinga.com")
         ) {
           articleIndex = i;
 
@@ -85,7 +86,7 @@ app.use("/fetch-articles", async (req, res) => {
       filterData();
      
       try {
-        const aiResponse = await fetch(`http://localhost:3500/get-AI-response`);
+        const aiResponse = await fetch(`http://localhost:3500/get-AI-response?topic=${topic}`);
         const data = await aiResponse.json();
         console.log("data is ", data);
 

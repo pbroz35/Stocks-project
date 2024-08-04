@@ -8,7 +8,8 @@ const path = require("path");
 router.use(cors()); // Enable CORS for all routes
 
 router.get("/", async (req, res) => {
-  const question = req.query.question; // Your custom question
+
+  const {topic }= req.query;
 
   var TextData, lines;
 
@@ -35,7 +36,7 @@ router.get("/", async (req, res) => {
     const response = await axios.post(
       "https://arcade.evl.uic.edu/llama/generate",
       {
-        inputs: `<|begin_of_text|><|start_header_id|>system<|end_header_id|> Cutting Knowledge Date: December 2023 Today Date: 23 Jul 2024 You are a helpful assistant<|eot_id|><|start_header_id|>user<| end_header_id|> ${lines} Evaluate based off the articles the company Apple, is it a good investment? <|eot_id|><|start_header_id|>assistant<|end_header_id| >`,
+        inputs: `<|begin_of_text|><|start_header_id|>system<|end_header_id|> Cutting Knowledge Date: December 2023 Today Date: 23 Jul 2024 You are a helpful assistant<|eot_id|><|start_header_id|>user<| end_header_id|> ${lines} Evaluate based off the articles the company ${topic}, is it a good investment? <|eot_id|><|start_header_id|>assistant<|end_header_id| >`,
         parameters: {
           max_new_tokens: 30000,
           stop: [
