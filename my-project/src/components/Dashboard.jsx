@@ -26,7 +26,7 @@ const Dashboard = () => {
         </div>
 
         <div className="row-span-6 col-span-5 overflow-hidden">
-          <Graph></Graph>
+         <Graph></Graph> 
         </div>
 
         <div className="row-span-6 col-span-2 overflow-hidden">

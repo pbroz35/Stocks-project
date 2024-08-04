@@ -54,7 +54,6 @@ const filterData = () => {
 
     console.log("Data filtering complete, sending info to the AI API...");
 
-    
 };
 
 module.exports = { filterData };

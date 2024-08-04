@@ -25,9 +25,9 @@ app.use("/get-Info", require("./routes/getCompanyInfo.js"));
 
 app.use("/getHistoricalData", require("./routes/getHistoricalData.js"));
 
+app.use("/get-AI-response", require("./routes/AI.js"));
 
 app.use("/fetch-articles", async (req, res) => {
-
   const { topic = "Apple" } = req.query;
 
   //const newsAPI = process.env.NEWS_API;
@@ -80,17 +80,25 @@ app.use("/fetch-articles", async (req, res) => {
         }
       }
 
-      res.status(200).send("Articles fetched and saved successfully.");
-
       console.log("filtering data...");
       
       filterData();
+     
+      try {
+        const aiResponse = await fetch(`http://localhost:3500/get-AI-response`);
+        const data = await aiResponse.json();
+        console.log("data is ", data);
 
-      //call the AI model
+        res.status(200).json({
+          message: "Articles fetched and saved successfully.",
+          aiData: data
+        });
+        
+      } catch (error) {
+        console.error(error);
+      }
+
       
-
-
-
     } else {
       res.status(500).send("Error fetching articles.");
     }
@@ -98,8 +106,6 @@ app.use("/fetch-articles", async (req, res) => {
     res.status(500).send(`Error: ${error.message} } `);
   }
 });
-
-app.use("/get-AI-response", require("./routes/AI.js"));
 
 app.use("/", (req, res) => {
   res.send("main page");
