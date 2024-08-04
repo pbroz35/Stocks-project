@@ -68,7 +68,8 @@ app.use("/fetch-articles", async (req, res) => {
           article.url.startsWith("https://www.cdn.vox-cdn.com") ||
           article.url.startsWith("https://www.gizmodo.com") ||
           article.url.startsWith("https://www.theverge.com") ||
-          article.url.startsWith("https://www.benzinga.com")
+          article.url.startsWith("https://www.benzinga.com") ||
+          article.url.startsWith("https://www.businessinsider.com")
         ) {
           articleIndex = i;
 
