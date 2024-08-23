@@ -1,4 +1,5 @@
 # Stock Dashboard with AI Integration
+![Screenshot from 2024-08-23 11-10-20](https://github.com/user-attachments/assets/62307e81-f4fe-4148-b225-c6455cc8189b)
 
 ## Overview
 This project is a Stock Dashboard that provides real-time stock price information, an interactive graph, recent news articles, and AI-driven stock purchase predictions. It leverages the power of various APIs and AI models to give users a comprehensive view of their chosen stocks, aiding them in making informed investment decisions.
@@ -10,7 +11,6 @@ This project is a Stock Dashboard that provides real-time stock price informatio
 - **AI Stock Prediction**: Analyzes recent news articles using Llama3 AI API to predict if a stock is a good purchase, filtering out irrelevant or poorly formatted data through web scraping.
 - **Finnhub & NewsAPI Integration**: Retrieves financial data and news articles through Finnhub API and NewsAPI.
 
-![Screenshot from 2024-08-23 11-10-20](https://github.com/user-attachments/assets/62307e81-f4fe-4148-b225-c6455cc8189b)
 
 
 
